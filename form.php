@@ -6,19 +6,9 @@ $email = $_POST['email'];
 $subject = $_POST['temat'];
 $message = $_POST['wiadomosc'];
 
-try {
-    $conn = new PDO("sqlsrv:server = tcp:marsad7.database.windows.net,1433; Database = baza", "marsad", "mar$$ad7");
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-}
-catch (PDOException $e) {
-    print("Error connecting to SQL Server.");
-    die(print_r($e));
-}
-
-// SQL Server Extension Sample Code:
-$connectionInfo = array("UID" => "marsad", "pwd" => "mar$$ad7", "Database" => "baza", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
-$serverName = "tcp:marsad7.database.windows.net,1433";
-$conn = sqlsrv_connect($serverName, $connectionInfo);
+$con = mysqli_init();
+mysqli_ssl_set($con,NULL,NULL, "{path to CA cert}", NULL, NULL);
+mysqli_real_connect($conn, "strona-marcin-server.mysql.database.azure.com", "sceaottbhr", "M@rsad77", "{your_database}", 3306, MYSQLI_CLIENT_SSL);
 
 // Walidacja danych (można dodać dodatkowe sprawdzenia, np. czy adres e-mail jest poprawny)
 if (!empty($name) && !empty($email) && !empty($subject) && !empty($message)) {

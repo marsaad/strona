@@ -7,7 +7,7 @@ $subject = $_POST['temat'];
 $message = $_POST['wiadomosc'];
 
 // Połącz się z bazą danych
-$host = "marcinsadowski.database.windows.net,1433";
+$host = "marcinsadowski.database.windows.net";
 $db_user = "marsad";
 $db_password = "M@rsad77";
 $db_name = "marcinsadowski";

@@ -7,10 +7,10 @@ $subject = $_POST['temat'];
 $message = $_POST['wiadomosc'];
 
 // Połącz się z bazą danych
-$host = "localhost";
-$db_user = "marsad";
-$db_password = "marsad";
-$db_name = "strona";
+$host = "marcinsadowski-server2.mysql.database.azure.com";
+$db_user = "marcinsadowski-database";
+$db_password = "0Z2KC5QYLPPSN2H7$";
+$db_name = "marcinsadowski-database";
 
 $conn = mysqli_connect($host, $db_user, $db_password, $db_name);
 

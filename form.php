@@ -11,6 +11,7 @@ $host = "marcinsadowski-server2.mysql.database.azure.com";
 $db_user = "lbgzcfufar";
 $db_password = "0Z2KC5QYLPPSN2H7$";
 $db_name = "marcinsadowski-database";
+$sslmode = "require";
 
 $conn = mysqli_connect($host, $db_user, $db_password, $db_name);
 

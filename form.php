@@ -7,17 +7,32 @@ $subject = $_POST['temat'];
 $message = $_POST['wiadomosc'];
 
 // Połącz się z bazą danych
-$host = "marcinsadowski.database.windows.net";
-$db_user = "marsad";
-$db_password = "M@rsad77";
-$db_name = "marcinsadowski";
+//$host = "marcinsadowski.database.windows.net";
+//$db_user = "marsad";
+//$db_password = "M@rsad77";
+//$db_name = "marcinsadowski";
 
-$conn = mysqli_connect($host, $db_user, $db_password, $db_name);
+//$conn = mysqli_connect($host, $db_user, $db_password, $db_name);
 
 // Sprawdź połączenie
-if (!$conn) {
-    die("Połączenie z bazą danych nie powiodło się: " . mysqli_connect_error());
+//if (!$conn) {
+//    die("Połączenie z bazą danych nie powiodło się: " . mysqli_connect_error());
+//}
+
+// PHP Data Objects(PDO) Sample Code:
+try {
+    $conn = new PDO("sqlsrv:server = tcp:marcinsadowski.database.windows.net,1433; Database = marcinsadowski", "marsad", "{your_password_here}");
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }
+catch (PDOException $e) {
+    print("Error connecting to SQL Server.");
+    die(print_r($e));
+}
+
+// SQL Server Extension Sample Code:
+$connectionInfo = array("UID" => "marsad", "pwd" => "{your_password_here}", "Database" => "marcinsadowski", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+$serverName = "tcp:marcinsadowski.database.windows.net,1433";
+$conn = sqlsrv_connect($serverName, $connectionInfo);
 
 // Walidacja danych (można dodać dodatkowe sprawdzenia, np. czy adres e-mail jest poprawny)
 if (!empty($name) && !empty($email) && !empty($subject) && !empty($message)) {

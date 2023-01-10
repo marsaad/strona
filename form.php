@@ -21,7 +21,7 @@ $message = $_POST['wiadomosc'];
 
 // PHP Data Objects(PDO) Sample Code:
 try {
-    $conn = new PDO("sqlsrv:server = tcp:marcinsadowski.database.windows.net,1433; Database = marcinsadowski", "marsad", "{your_password_here}");
+    $conn = new PDO("sqlsrv:server = tcp:marcinsadowski.database.windows.net,1433; Database = marcinsadowski", "marsad", "M@rsad77");
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }
 catch (PDOException $e) {
@@ -30,7 +30,7 @@ catch (PDOException $e) {
 }
 
 // SQL Server Extension Sample Code:
-$connectionInfo = array("UID" => "marsad", "pwd" => "{your_password_here}", "Database" => "marcinsadowski", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+$connectionInfo = array("UID" => "marsad", "pwd" => "M@rsad77", "Database" => "marcinsadowski", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
 $serverName = "tcp:marcinsadowski.database.windows.net,1433";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
 

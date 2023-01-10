@@ -8,7 +8,7 @@ $message = $_POST['wiadomosc'];
 
 // Połącz się z bazą danych
 $host = "marcinsadowski-server2.mysql.database.azure.com";
-$db_user = "marcinsadowski-database";
+$db_user = "lbgzcfufar";
 $db_password = "0Z2KC5QYLPPSN2H7$";
 $db_name = "marcinsadowski-database";
 

@@ -14,7 +14,7 @@ $message = $_POST['wiadomosc'];
 
 //$conn = mysqli_connect($host, $db_user, $db_password, $db_name);
 
-//\ Sprawdź połączenie
+//\\ Sprawdź połączenie
 //if (!$conn) {
 //    die("Połączenie z bazą danych nie powiodło się: " . mysqli_connect_error());
 //}

@@ -29,11 +29,6 @@ catch (PDOException $e) {
     die(print_r($e));
 }
 
-// SQL Server Extension Sample Code:
-$connectionInfo = array("UID" => "marsad", "pwd" => "M@rsad77", "Database" => "marcinsadowski", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
-$serverName = "tcp:marcinsadowski.database.windows.net,1433";
-$conn = sqlsrv_connect($serverName, $connectionInfo);
-
 // Walidacja danych (można dodać dodatkowe sprawdzenia, np. czy adres e-mail jest poprawny)
 if (!empty($name) && !empty($email) && !empty($subject) && !empty($message)) {
     // Wszystkie pola są wypełnione, więc można przetworzyć dane

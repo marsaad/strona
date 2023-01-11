@@ -1,55 +1,31 @@
 <?php
+$host = "marcinsadowski.database.windows.net";
+$user = "marsad";
+$pass = "M@rsad77";
+$dbname = "marcinsadowski";
+$port = "1433";
 
-// Pobierz dane z formularza
-$name = $_POST['nazwa'];
+$nazwa = $_POST['nazwa'];
 $email = $_POST['email'];
-$subject = $_POST['temat'];
-$message = $_POST['wiadomosc'];
+$temat = $_POST['temat'];
+$wiadomosc = $_POST['wiadomosc'];
 
-// Połącz się z bazą danych
-//$host = "marcinsadowski.database.windows.net";
-//$db_user = "marsad";
-//$db_password = "M@rsad77";
-//$db_name = "marcinsadowski";
+// Tworzymy połączenie
+$conn = new mysqli($host, $user, $pass, $dbname, $port);
 
-//$conn = mysqli_connect($host, $db_user, $db_password, $db_name);
-
-//\\ Sprawdź połączenie
-//if (!$conn) {
-//    die("Połączenie z bazą danych nie powiodło się: " . mysqli_connect_error());
-//}
-
-// PHP Data Objects(PDO) Sample Code:
-try {
-    $conn = new PDO("sqlsrv:server = tcp:marcinsadowski.database.windows.net,1433; Database = marcinsadowski", "marsad", "M@rsad77");
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-}
-catch (PDOException $e) {
-    print("Error connecting to SQL Server.");
-    die(print_r($e));
+// Sprawdzamy czy połączenie się udało
+if ($conn->connect_error) {
+    die("Połączenie nieudane: " . $conn->connect_error);
 }
 
-// Walidacja danych (można dodać dodatkowe sprawdzenia, np. czy adres e-mail jest poprawny)
-if (!empty($name) && !empty($email) && !empty($subject) && !empty($message)) {
-    // Wszystkie pola są wypełnione, więc można przetworzyć dane
+$sql = "INSERT INTO kontakt (name, mail, subject, text)
+VALUES ('$nazwa', '$email', '$temat', '$wiadomosc')";
 
-    // Przygotuj zapytanie do bazy danych
-    $sql = "INSERT INTO kontakt (name, mail, subject, text) VALUES ('$name', '$email', '$subject', '$message')";
-
-    // Wykonaj zapytanie
-    if (mysqli_query($conn, $sql)) {
-        // Jeśli zapytanie zostało wykonane poprawnie, wyświetl komunikat o powodzeniu
-        echo "Dziękujemy za wysłanie formularza. Twoje dane zostały zapisane w bazie danych.";
-    } else {
-        // Jeśli wystąpił błąd podczas wykonywania zapytania, wyświetl komunikat o błędzie
-        echo "Błąd: " . $sql . "<br>" . mysqli_error($conn);
-    }
+if ($conn->query($sql) === TRUE) {
+    echo "Dane zostały wstawione do tabeli.";
 } else {
-    // Nie wszystkie pola są wypełnione, więc należy wyświetlić komunikat o błędzie
-    echo "Wypełnij wszystkie pola formularza.";
+    echo "Błąd: " . $sql . "<br>" . $conn->error;
 }
 
-// Zamknij połączenie z bazą danych
-mysqli_close($conn);
-
+$conn->close();
 ?>

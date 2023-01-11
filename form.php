@@ -3,7 +3,6 @@ $host = "marcinsadowski.database.windows.net";
 $user = "marsad";
 $pass = "M@rsad77";
 $dbname = "marcinsadowski";
-$port = 1433;
 
 $nazwa = $_POST['nazwa'];
 $email = $_POST['email'];
